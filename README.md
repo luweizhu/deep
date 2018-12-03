@@ -105,7 +105,8 @@ mnist图像在0和1之间进行归一化, 其中tjhnpje激活函数可以表现�
 
 构建网络生成器部分,函数参数:gen_z:生成器输入张量;gen_out_dim:生成器的输出形状;num_hiddern_units:神经元的数量/隐藏层中的单位：reuse_vars:tf.variable_scope中的重用变量；leaky_relu:Leaky ReLU参数;函数返回:sigmoid_out;logits_layer
 
-```tf.variable_scope('generator',reuse=reuse_vars)  #定义生成器隐藏层
+```
+tf.variable_scope('generator',reuse=reuse_vars)  #定义生成器隐藏层
 hidden_layer_1=tf.layers.dense(qen_z,num_hiddern_units,activation=None)  #将hidden_layer_1的输出送到leaky relu中
 hidden_layer_1=tf.maximum(hidden_layer_1,leaky_relu_alpha*hidden_layer_1)    #获取logits和tanh层的输出
 logits_layer=tf.layers.dense(hidden_layer_1,gen_out_dim,activation=None)
@@ -123,7 +124,8 @@ return tanh_output,logits_layer
  
  构建网络判别器部分,函数参数:disc_input:判别器输入张量;num_hiddern_units:神经元的数量/隐藏层中的单位：reuse_vars:tf.variable_scope中的重用变量；leaky_relu_alpha:Leaky ReLU参数;函数返回:sigmoid_out;logits_layer
  
- ```tf.variable_scope('discriminator',reuse=reuse_vars)    #定义判别器隐藏层
+ ```
+ tf.variable_scope('discriminator',reuse=reuse_vars)    #定义判别器隐藏层
  hidden_layer_1=tf.layers.dense(disc_input,num_hiddern_units,activation=None) #将hidden_layer_1的输出送到leaky relu中
  hidden_layer_1=tf.maximum(hidden_layer_1,leaky_relu_alpha*hidden_layer_1)
  logits_layer=tf.layers.dense(hidden_layer_1,1,activation=None)
