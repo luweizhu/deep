@@ -163,7 +163,8 @@ return tanh_output,lagits_layer
  ```gen_modle,gen_logits=generator(generator_input_z,input_img_size,gen_hidden_size,reuse_vars=False,leaky_relu_alpha=leaky_relu_alpha) gen_modle是生成器的输出```
  
  创建判别器网络
- ```disc_modle_real,disc_logits_real=discriminator(real_discriminator_input,disc_hidden_size,reuse_vars=False,leaky_relu_alpha=leaky_relu_alpha)
+ ```
+disc_modle_real,disc_logits_real=discriminator(real_discriminator_input,disc_hidden_size,reuse_vars=False,leaky_relu_alpha=leaky_relu_alpha)
 disc_modle_fake,disc_logits_fake=discriminator(gen_modle,disc_hidden_size,reuse_vars=True,leaky_relu_alpha=leaky_relu_alpha)
 ```
  
