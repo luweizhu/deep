@@ -110,7 +110,7 @@ hidden_layer_1=tf.layers.dense(qen_z,num_hiddern_units,activation=None)   将hid
 hidden_layer_1=tf.maximum(hidden_layer_1,leaky_relu_alpha*hidden_layer_1)    获取logits和tanh层的输出
 logits_layer=tf.layers.dense(hidden_layer_1,gen_out_dim,activation=None)
 tanh_output=tf.nn.tanh(logits_layer)
-return tanh_output,lagits_layer
+return tanh_output,logits_layer
 ```
 现在我们已经准备好了生成器部分。让我们继续前进, 并定义第二个组件的网络
 
