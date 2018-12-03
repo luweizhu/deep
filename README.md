@@ -43,14 +43,14 @@ Import tensorflow as tf
 我们将使用MNIST数据集，因此需要用用TensorFlow helper获取数据集并将其存储在某处:
 ```from tensorflow.example.tutorials.mnist import input_data
 mnist_dataset = input_data.read_data_sets(‘MNIST_data’)
-```
 Output:
-```Extracting MNIST_data/train-images-idx3-ubyte.gz
+Extracting MNIST_data/train-images-idx3-ubyte.gz
 Extracting MNIST_data/train-labels-idx1-ubyte.gz
 Extracting MNIST_data/t10k-images-idx3-ubyte.gz
 Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
 ```
 输入模型
+
   在深入构建由生成器和判别器表示的GAN核心之前，先定义计算图的输入。如图2所示，我们需要两个输入。第一个是真实的图像，它将被输入判别器。另一种输入
 称为潜在空间，它将被输入到生成器，并用于生成它的虚假图像:
 
