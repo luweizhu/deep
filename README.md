@@ -105,9 +105,9 @@ mnist图像在0和1之间进行归一化, 其中tjhnpje激活函数可以表现�
 
 构建网络生成器部分,函数参数:gen_z:生成器输入张量;gen_out_dim:生成器的输出形状;num_hiddern_units:神经元的数量/隐藏层中的单位：reuse_vars:tf.variable_scope中的重用变量；leaky_relu:Leaky ReLU参数;函数返回:sigmoid_out;logits_layer
 
-```tf.variable_scope('generator',reuse=reuse_vars)  定义生成器隐藏层
-hidden_layer_1=tf.layers.dense(qen_z,num_hiddern_units,activation=None)   将hidden_layer_1的输出送到leaky relu中
-hidden_layer_1=tf.maximum(hidden_layer_1,leaky_relu_alpha*hidden_layer_1)    获取logits和tanh层的输出
+```tf.variable_scope('generator',reuse=reuse_vars)  #定义生成器隐藏层
+hidden_layer_1=tf.layers.dense(qen_z,num_hiddern_units,activation=None)  #将hidden_layer_1的输出送到leaky relu中
+hidden_layer_1=tf.maximum(hidden_layer_1,leaky_relu_alpha*hidden_layer_1)    #获取logits和tanh层的输出
 logits_layer=tf.layers.dense(hidden_layer_1,gen_out_dim,activation=None)
 tanh_output=tf.nn.tanh(logits_layer)
 return tanh_output,logits_layer
@@ -123,8 +123,8 @@ return tanh_output,logits_layer
  
  构建网络判别器部分,函数参数:disc_input:判别器输入张量;num_hiddern_units:神经元的数量/隐藏层中的单位：reuse_vars:tf.variable_scope中的重用变量；leaky_relu_alpha:Leaky ReLU参数;函数返回:sigmoid_out;logits_layer
  
- ```tf.variable_scope('discriminator',reuse=reuse_vars)    定义判别器隐藏层
- hidden_layer_1=tf.layers.dense(disc_input,num_hiddern_units,activation=None) 将hidden_layer_1的输出送到leaky relu中
+ ```tf.variable_scope('discriminator',reuse=reuse_vars)    #定义判别器隐藏层
+ hidden_layer_1=tf.layers.dense(disc_input,num_hiddern_units,activation=None) #将hidden_layer_1的输出送到leaky relu中
  hidden_layer_1=tf.maximum(hidden_layer_1,leaky_relu_alpha*hidden_layer_1)
  logits_layer=tf.layers.dense(hidden_layer_1,1,activation=None)
  sigmoid_out=tf.nn.sigmoid(logits_layer)
@@ -138,12 +138,12 @@ return tanh_output,logits_layer
  **模型超参数**
  
  我们可以通过更改以下一组超参数来微调GANs:
- ```input_img_size=784  生成器输入图像的大小将会以28×28平铺成784
- gen_z_size=100  生成器潜在向量的大小
+ ```input_img_size=784  #生成器输入图像的大小将会以28×28平铺成784
+ gen_z_size=100  #生成器潜在向量的大小
  gen_hidden_size=128
- disc_hidden_size=128  生成器和判别器隐藏层中的隐藏单元的数量
- leaky_relu_alpha=0.01 控制leak功能的leaky relu  alpha参数
- lable_smooth=0.1 标签平滑度
+ disc_hidden_size=128  #生成器和判别器隐藏层中的隐藏单元的数量
+ leaky_relu_alpha=0.01 #控制leak功能的leaky relu  alpha参数
+ lable_smooth=0.1 #标签平滑度
  ```
  
  **定义生成器和判别器**
@@ -162,15 +162,15 @@ return tanh_output,logits_layer
  创建生成器网络
  ```
  gen_modle,gen_logits=generator(generator_input_z,input_img_size,gen_hidden_size,reuse_vars=False,leaky_relu_alpha
- =leaky_relu_alpha)   gen_modle是生成器的输出
+                     =leaky_relu_alpha)   #gen_modle是生成器的输出
  ```
  
  创建判别器网络
  ```
 disc_modle_real,disc_logits_real=discriminator(real_discriminator_input,disc_hidden_size,reuse_vars=False,
-leaky_relu_alpha=leaky_relu_alpha)
+                                 leaky_relu_alpha=leaky_relu_alpha)
 disc_modle_fake,disc_logits_fake=discriminator(gen_modle,disc_hidden_size,reuse_vars=True,leaky_relu_alpha
-=leaky_relu_alpha)
+                                =leaky_relu_alpha)
 ```
  
 ## Deep-Learning-By-Example-master
