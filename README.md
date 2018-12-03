@@ -124,7 +124,7 @@ return tanh_output,lagits_layer
  构建网络判别器部分,函数参数:disc_input:判别器输入张量;num_hiddern_units:神经元的数量/隐藏层中的单位：reuse_vars:tf.variable_scope中的重用变量；leaky_relu_alpha:Leaky ReLU参数;函数返回:sigmoid_out;logits_layer
  
  ```tf.variable_scope('discriminator',reuse=reuse_vars)    定义判别器隐藏层
- hidden_layer_1=tf.layers.dense(disc_input,num_hiddern_units,activation=None)   将hidden_layer_1的输出送到leaky relu中
+ hidden_layer_1=tf.layers.dense(disc_input,num_hiddern_units,activation=None) 将hidden_layer_1的输出送到leaky relu中
  hidden_layer_1=tf.maximum(hidden_layer_1,leaky_relu_alpha*hidden_layer_1)
  logits_layer=tf.layers.dense(hidden_layer_1,1,activation=None)
  sigmoid_out=tf.nn.sigmoid(logits_layer)
@@ -160,11 +160,14 @@ return tanh_output,lagits_layer
  ```real_discriminator_input,generator_input_z=inputs_placeholders(input_img_size,gen_z_size)```
  
  创建生成器网络
- ```gen_modle,gen_logits=generator(generator_input_z,input_img_size,gen_hidden_size,reuse_vars=False,leaky_relu_alpha=leaky_relu_alpha) gen_modle是生成器的输出```
+ ```
+ gen_modle,gen_logits=generator(generator_input_z,input_img_size,gen_hidden_size,reuse_vars=False,leaky_relu_alpha=leaky_relu_alpha) gen_modle是生成器的输出
+ ```
  
  创建判别器网络
  ```
-disc_modle_real,disc_logits_real=discriminator(real_discriminator_input,disc_hidden_size,reuse_vars=False,leaky_relu_alpha=leaky_relu_alpha)
+disc_modle_real,disc_logits_real=discriminator(real_discriminator_input,disc_hidden_size,reuse_vars=False,leaky_relu_alpha
+=leaky_relu_alpha)
 disc_modle_fake,disc_logits_fake=discriminator(gen_modle,disc_hidden_size,reuse_vars=True,leaky_relu_alpha=leaky_relu_alpha)
 ```
  
